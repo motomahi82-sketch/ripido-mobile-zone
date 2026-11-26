@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIPIDO MOBILE ZONE — অফিসিয়াল স্মার্টফোন স্টোর</title>
+  <style>
+    :root {
+      --primary: #f85606;
+      --primary-dark: #d84700;
+      --primary-soft: #fff2eb;
+      --bg: #f5f6f8;
+      --card: #ffffff;
+      --text: #18181b;
+      --muted: #52525b;
+      --border: #e4e4e7;
+      --success: #0f766e;
+      --success-soft: #f0fdfa;
+      --warn: #b45309;
+      --warn-soft: #fffbeb;
+      --radius: 12px;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Bengali", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding-bottom: 84px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* Top Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 14px 12px;
+      box-shadow: 0 2px 10px rgba(248, 86, 6, 0.25);
+    }
+
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      opacity: 0.92;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .pill-btn.solid {
+      background: #fff;
+      color: var(--primary);
+      border-color: #fff;
+    }
+
+    .search-wrap {
+      display: flex;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 3px;
+    }
+
+    .search-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .search-wrap button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1120px;
+      margin: 14px auto 0;
+      padding: 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Brand Bar */
+    .brand-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .brand-chip {
+      flex: 0 0 auto;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .brand-chip.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Controls Bar */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .sort-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sort-btn {
+      background: #f4f4f5;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .sort-btn.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+
+    /* 2-Column Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (min-width: 820px) {
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .product-img-box {
+      position: relative;
+      background: #fafafa;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .empty-photo-box {
+      padding: 14px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .brand-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(24, 24, 27, 0.82);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .wish-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      width: 30px;
+      height: 30px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .product-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .price-now {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .price-old {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .emi-note {
+      font-size: 0.74rem;
+      color: var(--success);
+      background: var(--success-soft);
+      padding: 4px 7px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-sm {
+      padding: 7px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Empty Catalog Box */
+    .empty-catalog {
+      text-align: center;
+      padding: 28px 16px;
+      background: #fff;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius);
+    }
+
+    .empty-catalog h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-catalog p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 12px;
+    }
+
+    /* Info & EMI Rules Section */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 760px) {
+      .rules-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .rule-box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .rule-box h4 {
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+    }
+
+    .rule-list {
+      padding-left: 18px;
+      font-size: 0.83rem;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Modals / Drawers */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 16px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: #f4f4f5;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .form-grid.two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.86rem;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .summary-box {
+      background: var(--primary-soft);
+      border: 1px solid #fed7aa;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.84rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin: 10px 0;
+    }
+
+    .notice-warn {
+      background: var(--warn-soft);
+      border: 1px solid #fde68a;
+      color: #78350f;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .tabs-bar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tab-btn {
+      padding: 6px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f4f4f5;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .variant-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 0.8fr auto;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .variant-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Bottom Mobile Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 45;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 4px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .bottom-btn {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 4px;
+    }
+
+    .bottom-btn.active,
+    .bottom-btn:hover {
+      color: var(--primary);
+    }
+
+    .badge-count {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 999px;
+      padding: 1px 6px;
+      font-size: 0.68rem;
+      margin-left: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <div>
+          <div class="brand-title" id="uiSiteTitle">RIPIDO MOBILE ZONE</div>
+          <div class="brand-sub" id="uiSiteSub">অফিসিয়াল স্মার্টফোন স্টোর • ৬৪ জেলা ডেলিভারি ও কিস্তি (EMI) সুবিধা</div>
+        </div>
+        <div class="top-actions">
+          <button class="pill-btn" id="langToggleBtn" type="button">English</button>
+          <button class="pill-btn" id="memberBtn" type="button">
+            <span id="memberBtnLabel">Google লগইন</span>
+          </button>
+          <button class="pill-btn solid" id="cartTopBtn" type="button">
+            <span id="cartTopLabel">কার্ট</span>
+            <span class="badge-count" id="cartCountBadge">0</span>
+          </button>
+          <button class="pill-btn" id="adminOpenBtn" type="button">Admin</button>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="ফোনের মডেল বা ব্র্যান্ড খুঁজুন (যেমন: TECNO, INFINIX, VIVO, OPPO, REALME, REDMI, XIAOMI)"
+        />
+        <button id="searchBtn" type="button">খুঁজুন</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Brand Selector -->
+    <section class="card" aria-label="Brands">
+      <div class="brand-bar" id="brandBar"></div>
+    </section>
+
+    <!-- Toolbar -->
+    <section class="card toolbar">
+      <div>
+        <strong id="catalogHeading">সকল স্মার্টফোন</strong>
+        <span id="catalogCountText" class="product-meta"> (০টি যাচাইকৃত প্রোডাক্ট)</span>
+      </div>
+      <div class="sort-group">
+        <button class="sort-btn active" data-sort="default" type="button" id="sortDefaultBtn">বেস্ট ম্যাচ</button>
+        <button class="sort-btn" data-sort="price-asc" type="button" id="sortAscBtn">দাম: কম থেকে বেশি</button>
+        <button class="sort-btn" data-sort="price-desc" type="button" id="sortDescBtn">দাম: বেশি থেকে কম</button>
+        <button class="sort-btn" id="wishlistOpenBtn" type="button">
+          <span id="wishBtnLabel">উইশলিস্ট</span>
+          <span class="badge-count" id="wishCountBadge">0</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Product Catalog Grid -->
+    <section id="catalogArea"></section>
+
+    <!-- EMI & Verification Guidelines in Bangla -->
+    <section class="card">
+      <h2 style="font-size: 1rem; margin-bottom: 10px;" id="rulesMainTitle">কিস্তি (EMI), ডেলিভারি ও যাচাইয়ের নিয়মাবলি</h2>
+      <div class="rules-grid">
+        <div class="rule-box">
+          <h4>১. অগ্রিম ডাউন পেমেন্ট ও কিস্তির শর্ত</h4>
+          <ul class="rule-list">
+            <li><strong>TECNO ও INFINIX:</strong> ন্যূনতম <strong>১৫%</strong> অগ্রিম ডাউন পেমেন্ট।</li>
+            <li><strong>VIVO, OPPO, REALME, REDMI, XIAOMI:</strong> ন্যূনতম <strong>২০%</strong> অগ্রিম ডাউন পেমেন্ট।</li>
+            <li><strong>মেয়াদ:</strong> ৩, ৬ অথবা ৯ মাস।</li>
+            <li><strong>ইন্টারেস্ট:</strong> এককালীন ইন্টারেস্ট (ডিফল্ট ৫%, অ্যাডমিন প্যানেল থেকে নির্ধারিত)।</li>
+            <li>কিস্তির আবেদনের ক্ষেত্রে প্রথমে অগ্রিম ডাউন পেমেন্ট পরিশোধ করতে হবে।</li>
+          </ul>
+        </div>
+
+        <div class="rule-box">
+          <h4>২. কিস্তির পরবর্তী ধাপে প্রয়োজনীয় তথ্য ও ছবি</h4>
+          <ul class="rule-list">
+            <li>নিজের <strong>NID কার্ডের সামনের ও পেছনের ছবি</strong>।</li>
+            <li><strong>NID কার্ড হাতে নিয়ে নিজের একটি পরিষ্কার ছবি</strong>।</li>
+            <li><strong>নমিনি:</strong> অবশ্যই পরিবারের নিকটাত্মীয় হতে হবে—<strong>মা, বাবা, বোন, ভাই, স্ত্রী বা স্বামী</strong>।</li>
+            <li>নমিনির <strong>NID কার্ডের সামনের ও পেছনের ছবি</strong> এবং <strong>নমিনির সাথে দাঁড়িয়ে এক কপি ছবি</strong>।</li>
+            <li><strong>নিজের ফোন নম্বর</strong> এবং <strong>নমিনির ফোন নম্বর</strong> দেওয়া ও ফোন/যাচাইয়ের মাধ্যমে নিশ্চিত করা বাধ্যতামূলক।</li>
+          </ul>
+        </div>
+
+        <div class="rule-box">
+          <h4>৩. ৬৪ জেলা ডেলিভারি ও পেমেন্ট মাধ্যম</h4>
+          <ul class="rule-list">
+            <li>অর্ডারের সময় নিজের ফোন নম্বর, বিভাগ, <strong>৬৪টি জেলার যেকোনো একটি জেলা</strong>, থানা/উপজেলা, এলাকা এবং পূর্ণ হোম অ্যাড্রেস দিতে হবে।</li>
+            <li><strong>ডেলিভারি চার্জ:</strong> ঢাকার ভেতরে <strong>৳৭০</strong> এবং ঢাকার বাইরে <strong>৳১৩০</strong>।</li>
+            <li>পেমেন্ট মাধ্যম: ক্যাশ অন ডেলিভারি (COD), bKash অথবা Nagad।</li>
+          </ul>
+        </div>
+
+        <div class="rule-box">
+          <h4>৪. নিরাপত্তা ও তথ্য গোপনীয়তা সতর্কতা</h4>
+          <ul class="rule-list">
+            <li>এই সাইটটি কোনো কাল্পনিক বা অনুমান করা ফোনের দাম/স্টক দেখায় না; কেবল যাচাইকৃত তথ্যই প্রদর্শিত হয়।</li>
+            <li>NID, ব্যক্তিগত ছবি, নমিনির তথ্য বা পেমেন্ট স্ক্রিনশট কখনোই পাবলিক GitHub-এ সংরক্ষণ করবেন না।</li>
+            <li>বাস্তব কাস্টমার ডেটা ও ডকুমেন্ট সংরক্ষণে নিরাপদ ব্যাকএন্ড, ডাটাবেজ ও প্রাইভেট স্টোরেজ ব্যবহার করতে হবে।</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Mobile Navigation -->
+  <nav class="bottom-nav" aria-label="Bottom Navigation">
+    <button class="bottom-btn active" id="navStoreBtn" type="button">
+      <span>স্টোর</span>
+    </button>
+    <button class="bottom-btn" id="navProductsBtn" type="button">
+      <span>প্রোডাক্ট</span>
+    </button>
+    <button class="bottom-btn" id="navTrackBtn" type="button">
+      <span>অর্ডার ট্র্যাক</span>
+    </button>
+    <button class="bottom-btn" id="navSupportBtn" type="button">
+      <span>সাপোর্ট</span>
+    </button>
+  </nav>
+
+  <!-- Generic Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <button class="close-btn" id="modalCloseBtn" type="button" aria-label="Close">✕</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const BRANDS = ["ALL", "TECNO", "INFINIX", "VIVO", "OPPO", "REALME", "REDMI", "XIAOMI"];
+
+    const DIVISIONS_DISTRICTS = {
+      "ঢাকা": ["ঢাকা", "গাজীপুর", "নারায়ণগঞ্জ", "নরসিংদী", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "কিশোরগঞ্জ", "টাঙ্গাইল", "ফরিদপুর", "মাদারীপুর", "শরীয়তপুর", "রাজবাড়ী", "গোপালগঞ্জ"],
+      "চট্টগ্রাম": ["চট্টগ্রাম", "কক্সবাজার", "কুমিল্লা", "ব্রাহ্মণবাড়িয়া", "চাঁদপুর", "ফেনী", "লক্ষ্মীপুর", "নোয়াখালী", "রাঙ্গামাটি", "খাগড়াছড়ি", "বান্দরবান"],
+      "সিলেট": ["সিলেট", "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ"],
+      "রাজশাহী": ["রাজশাহী", "বগুড়া", "পাবনা", "সিরাজগঞ্জ", "নওগাঁ", "নাটোর", "চাঁপাইনবাবগঞ্জ", "জয়পুরহাট"],
+      "খুলনা": ["খুলনা", "যশোর", "সাতক্ষীরা", "বাগেরহাট", "ঝিনাইদহ", "মাগুরা", "নড়াইল", "কুষ্টিয়া", "মেহেরপুর", "চুয়াডাঙ্গা"],
+      "রংপুর": ["রংপুর", "দিনাজপুর", "ঠাকুরগাঁও", "পঞ্চগড়", "নীলফামারী", "লালমনিরহাট", "কুড়িগ্রাম", "গাইবান্ধা"],
+      "বরিশাল": ["বরিশাল", "ভোলা", "পটুয়াখালী", "বরগুনা", "ঝালকাঠি", "পিরোজপুর"],
+      "ময়মনসিংহ": ["ময়মনসিংহ", "জামালপুর", "নেত্রকোণা", "শেরপুর"]
+    };
+
+    const STORAGE_KEYS = {
+      products: "ripido_verified_products_v1",
+      orders: "ripido_orders_v1",
+      member: "ripido_google_member_v1",
+      wishlist: "ripido_wishlist_v1",
+      cart: "ripido_cart_v1",
+      emiInterest: "ripido_emi_interest_v1",
+      adminSession: "ripido_admin_session_v1"
+    };
+
+    // Strictly unfabricated default catalog: starts empty until real verified items are added.
+    let state = {
+      lang: "bn",
+      brand: "ALL",
+      search: "",
+      sort: "default",
+      products: loadJSON(STORAGE_KEYS.products, []),
+      orders: loadJSON(STORAGE_KEYS.orders, []),
+      member: loadJSON(STORAGE_KEYS.member, null),
+      wishlist: loadJSON(STORAGE_KEYS.wishlist, []),
+      cart: loadJSON(STORAGE_KEYS.cart, []),
+      emiInterest: Number(loadJSON(STORAGE_KEYS.emiInterest, 5)) || 5,
+      adminAuthed: Boolean(loadJSON(STORAGE_KEYS.adminSession, false))
+    };
+
+    function loadJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (_) {
+        return fallback;
+      }
+    }
+
+    function saveJSON(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (_) {}
+    }
+
+    function persistAll() {
+      saveJSON(STORAGE_KEYS.products, state.products);
+      saveJSON(STORAGE_KEYS.orders, state.orders);
+      saveJSON(STORAGE_KEYS.member, state.member);
+      saveJSON(STORAGE_KEYS.wishlist, state.wishlist);
+      saveJSON(STORAGE_KEYS.cart, state.cart);
+      saveJSON(STORAGE_KEYS.emiInterest, state.emiInterest);
+      saveJSON(STORAGE_KEYS.adminSession, state.adminAuthed);
+    }
+
+    function formatBDT(amount) {
+      const num = Number(amount);
+      if (!Number.isFinite(num)) return "৳০";
+      return "৳" + num.toLocaleString("en-IN");
+    }
+
+    function getDownPaymentRate(brand) {
+      const upper = String(brand || "").toUpperCase();
+      return (upper === "TECNO" || upper === "INFINIX") ? 15 : 20;
+    }
+
+    function getDeliveryCharge(divisionOrDistrict) {
+      const val = String(divisionOrDistrict || "").trim();
+      return val === "ঢাকা" ? 70 : 130;
+    }
+
+    function getProductLowestPrice(product) {
+      if (!product || !Array.isArray(product.variants) || product.variants.length === 0) {
+        return Number(product?.price) || 0;
+      }
+      const prices = product.variants
+        .map(v => Number(v.price))
+        .filter(n => Number.isFinite(n) && n > 0);
+      return prices.length ? Math.min(...prices) : 0;
+    }
+
+    function getFilteredProducts() {
+      const q = state.search.trim().toLowerCase();
+      let list = state.products.filter(p => {
+        const matchesBrand = state.brand === "ALL" || String(p.brand).toUpperCase() === state.brand;
+        const matchesQuery =
+          !q ||
+          String(p.name || "").toLowerCase().includes(q) ||
+          String(p.brand || "").toLowerCase().includes(q) ||
+          (Array.isArray(p.variants) && p.variants.some(v => String(v.ramRom || "").toLowerCase().includes(q)));
+        return matchesBrand && matchesQuery;
+      });
+
+      if (state.sort === "price-asc") {
+        list = [...list].sort((a, b) => getProductLowestPrice(a) - getProductLowestPrice(b));
+      } else if (state.sort === "price-desc") {
+        list = [...list].sort((a, b) => getProductLowestPrice(b) - getProductLowestPrice(a));
+      }
+      return list;
+    }
+
+    // Render Brand Bar
+    function renderBrands() {
+      const bar = document.getElementById("brandBar");
+      bar.innerHTML = "";
+      BRANDS.forEach(b => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "brand-chip" + (state.brand === b ? " active" : "");
+        btn.textContent = b === "ALL" ? (state.lang === "bn" ? "সকল ব্র্যান্ড" : "All Brands") : b;
+        btn.addEventListener("click", () => {
+          state.brand = b;
+          renderBrands();
+          renderCatalog();
+        });
+        bar.appendChild(btn);
+      });
+    }
+
+    // Render Product Grid
+    function renderCatalog() {
+      const area = document.getElementById("catalogArea");
+      const heading = document.getElementById("catalogHeading");
+      const countText = document.getElementById("catalogCountText");
+      const list = getFilteredProducts();
+
+      heading.textContent =
+        state.brand === "ALL"
+          ? (state.lang === "bn" ? "সকল স্মার্টফোন" : "All Smartphones")
+          : `${state.brand} ${state.lang === "bn" ? "স্মার্টফোন" : "Smartphones"}`;
+
+      countText.textContent =
+        state.lang === "bn"
+          ? ` (${list.length}টি যাচাইকৃত প্রোডাক্ট)`
+          : ` (${list.length} verified items)`;
+
+      document.getElementById("cartCountBadge").textContent = String(state.cart.length);
+      document.getElementById("wishCountBadge").textContent = String(state.wishlist.length);
+      document.getElementById("memberBtnLabel").textContent = state.member
+        ? (state.member.name || "Google মেম্বার")
+        : (state.lang === "bn" ? "Google লগইন" : "Google Login");
+
+      if (list.length === 0) {
+        area.innerHTML = `
+          <div class="empty-catalog">
+            <h3>${state.lang === "bn" ? "এখনও কোনো যাচাইকৃত প্রোডাক্ট যুক্ত করা হয়নি" : "No verified products added yet"}</h3>
+            <p>${
+              state.lang === "bn"
+                ? "এই সাইটে কোনো কাল্পনিক ফোন, অনুমান করা দাম বা ভুয়া স্টক দেখানো হয় না। Admin প্যানেল থেকে আপনার আসল ফোনের নাম, ভ্যারিয়েন্ট, দাম ও ছবি যুক্ত করলে এখানে প্রদর্শিত হবে।"
+                : "No placeholder phones, guessed prices, or fake stock are displayed. Add verified phone details and photos via the Admin panel."
+            }</p>
+            <button class="btn-sm btn-primary" type="button" onclick="openAdminModal()">
+              ${state.lang === "bn" ? "Admin-এ প্রোডাক্ট ও দাম যুক্ত করুন" : "Add Product & Price in Admin"}
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const grid = document.createElement("div");
+      grid.className = "product-grid";
+
+      list.forEach(item => {
+        const firstVariant = Array.isArray(item.variants) && item.variants.length ? item.variants[0] : null;
+        const price = firstVariant ? Number(firstVariant.price) : Number(item.price) || 0;
+        const dpRate = getDownPaymentRate(item.brand);
+        const dpAmount = Math.round((price * dpRate) / 100);
+        const isWished = state.wishlist.includes(item.id);
+
+        const card = document.createElement("article");
+        card.className = "product-card";
+
+        const photoHtml = item.image
+          ? `<img src="${escapeAttr(item.image)}" alt="${escapeAttr(item.name)}" />`
+          : `<div class="empty-photo-box">${
+              state.lang === "bn" ? "ছবি যুক্ত করা হয়নি (Admin থেকে ছবি দিন)" : "No photo uploaded"
+            }</div>`;
+
+        card.innerHTML = `
+          <div class="product-img-box">
+            ${photoHtml}
+            <span class="brand-tag">${escapeHtml(item.brand)}</span>
+            <button class="wish-btn" type="button" title="Wishlist" onclick="toggleWishlist('${escapeAttr(item.id)}')">
+              ${isWished ? "♥" : "♡"}
+            </button>
+          </div>
+          <div class="product-body">
+            <div class="product-title">${escapeHtml(item.name)}</div>
+            <div class="product-meta">
+              ${firstVariant ? escapeHtml(firstVariant.ramRom || "") : ""}
+              ${firstVariant && firstVariant.stock !== "" && firstVariant.stock !== undefined ? ` • Stock: ${escapeHtml(String(firstVariant.stock))}` : ""}
+            </div>
+            <div class="price-row">
+              <span class="price-now">${price > 0 ? formatBDT(price) : (state.lang === "bn" ? "দাম নির্ধারিত নয়" : "Price not set")}</span>
+            </div>
+            ${
+              price > 0
+                ? `<div class="emi-note">EMI ডাউন পেমেন্ট (${dpRate}%): ${formatBDT(dpAmount)}</div>`
+                : ""
+            }
+            <div class="card-actions">
+              <button class="btn-sm" type="button" onclick="openProductDetail('${escapeAttr(item.id)}')">
+                ${state.lang === "bn" ? "বিস্তারিত / EMI" : "Details / EMI"}
+              </button>
+              <button class="btn-sm btn-primary" type="button" onclick="addToCart('${escapeAttr(item.id)}')">
+                ${state.lang === "bn" ? "কার্টে নিন" : "Add to Cart"}
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      area.innerHTML = "";
+      area.appendChild(grid);
+    }
+
+    function toggleWishlist(productId) {
+      if (state.wishlist.includes(productId)) {
+        state.wishlist = state.wishlist.filter(id => id !== productId);
+      } else {
+        state.wishlist.push(productId);
+      }
+      persistAll();
+      renderCatalog();
+    }
+
+    function addToCart(productId) {
+      const product = state.products.find(p => p.id === productId);
+      if (!product) return;
+      const v = (product.variants && product.variants[0]) || { ramRom: "Standard", price: Number(product.price) || 0 };
+      state.cart.push({
+        productId: product.id,
+        brand: product.brand,
+        name: product.name,
+        variant: v.ramRom || "Standard",
+        unitPrice: Number(v.price) || 0,
+        qty: 1
+      });
+      persistAll();
+      renderCatalog();
+      alert(state.lang === "bn" ? "প্রোডাক্ট কার্টে যুক্ত হয়েছে।" : "Added to cart.");
+    }
+
+    // Modal Helpers
+    function openModal(title, html) {
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("modalBody").innerHTML = html;
+      document.getElementById("modalBackdrop").classList.add("open");
+    }
+
+    function closeModal() {
+      document.getElementById("modalBackdrop").classList.remove("open");
+    }
+
+    document.getElementById("modalCloseBtn").addEventListener("click", closeModal);
+    document.getElementById("modalBackdrop").addEventListener("click", e => {
+      if (e.target.id === "modalBackdrop") closeModal();
+    });
+
+    // Google-only Member Login Modal
+    function openMemberModal() {
+      if (state.member) {
+        openModal(
+          "Google মেম্বার অ্যাকাউন্ট",
+          `
+            <p style="font-size:0.9rem; margin-bottom:10px;">
+              <strong>নাম:</strong> ${escapeHtml(state.member.name)}<br/>
+              <strong>Google ইমেইল:</strong> ${escapeHtml(state.member.email)}
+            </p>
+            <button class="btn-sm" type="button" onclick="logoutMember()">লগআউট করুন</button>
+          `
+        );
+        return;
+      }
+
+      openModal(
+        "শুধুমাত্র Google লগইন দিয়ে মেম্বার প্রবেশ",
+        `
+          <p style="font-size:0.86rem; color:var(--muted); margin-bottom:10px;">
+            পাবলিক সাইটে মেম্বার হিসেবে অর্ডার ও কিস্তি (EMI) কার্যক্রমের জন্য Google অ্যাকাউন্ট ব্যবহার করুন। (রিয়েল প্রোডাকশনে সার্ভার-সাইড Google OAuth যুক্ত করুন।)
+          </p>
+          <form id="googleLoginForm" class="form-grid">
+            <div class="field">
+              <label>আপনার পূর্ণ নাম (Google Profile Name)</label>
+              <input type="text" id="gName" required placeholder="যেমন: মো. করিম" />
+            </div>
+            <div class="field">
+              <label>Google ইমেইল ঠিকানা</label>
+              <input type="email" id="gEmail" required placeholder="name@gmail.com" />
+            </div>
+            <button class="btn-sm btn-primary" type="submit">Google দিয়ে লগইন করুন</button>
+          </form>
+        `
+      );
+
+      document.getElementById("googleLoginForm").addEventListener("submit", e => {
+        e.preventDefault();
+        state.member = {
+          name: document.getElementById("gName").value.trim(),
+          email: document.getElementById("gEmail").value.trim(),
+          provider: "google"
+        };
+        persistAll();
+        renderCatalog();
+        closeModal();
+      });
+    }
+
+    function logoutMember() {
+      state.member = null;
+      persistAll();
+      renderCatalog();
+      closeModal();
+    }
+
+    // Product Detail + Upfront Down Payment EMI Calculator & Submission
+    function openProductDetail(productId) {
+      const p = state.products.find(item => item.id === productId);
+      if (!p) return;
+      const variants = Array.isArray(p.variants) && p.variants.length
+        ? p.variants
+        : [{ ramRom: "Standard", price: Number(p.price) || 0, stock: "" }];
+
+      const dpRate = getDownPaymentRate(p.brand);
+
+      openModal(
+        `${p.brand} — ${p.name}`,
+        `
+          ${p.image ? `<img src="${escapeAttr(p.image)}" alt="${escapeAttr(p.name)}" style="width:100%; max-height:220px; object-fit:contain; border-radius:10px; background:#fafafa; margin-bottom:10px;" />` : ""}
+          <form id="emiOrderForm" class="form-grid">
+            <div class="field">
+              <label>ভ্যারিয়েন্ট নির্বাচন করুন (RAM / ROM)</label>
+              <select id="emiVariantSelect">
+                ${variants.map((v, idx) => `<option value="${idx}">${escapeHtml(v.ramRom || "Variant")} — ${formatBDT(v.price)}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>কিস্তির মেয়াদ (মাস)</label>
+                <select id="emiMonths">
+                  <option value="3">৩ মাস</option>
+                  <option value="6">৬ মাস</option>
+                  <option value="9">৯ মাস</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>অর্ডার ধরন</label>
+                <select id="orderMode">
+                  <option value="EMI">কিস্তি (EMI — অগ্রিম ডাউন পেমেন্ট বাধ্যতামূলক)</option>
+                  <option value="FULL">সম্পূর্ণ মূল্য পরিশোধ</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="summary-box" id="emiCalculationBox"></div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>নিজের ফোন নম্বর *</label>
+                <input type="tel" id="custPhone" required placeholder="01XXXXXXXXX" />
+              </div>
+              <div class="field">
+                <label>নমিনির ফোন নম্বর (কিস্তির ক্ষেত্রে বাধ্যতামূলক)</label>
+                <input type="tel" id="nomineePhone" placeholder="01XXXXXXXXX" />
+              </div>
+            </div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>বিভাগ *</label>
+                <select id="addrDivision" required>
+                  ${Object.keys(DIVISIONS_DISTRICTS).map(d => `<option value="${escapeAttr(d)}">${escapeHtml(d)}</option>`).join("")}
+                </select>
+              </div>
+              <div class="field">
+                <label>জেলা (৬৪টি জেলা) *</label>
+                <select id="addrDistrict" required></select>
+              </div>
+            </div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>থানা / উপজেলা *</label>
+                <input type="text" id="addrThana" required placeholder="থানা বা উপজেলার নাম" />
+              </div>
+              <div class="field">
+                <label>এলাকা *</label>
+                <input type="text" id="addrArea" required placeholder="এলাকা / ওয়ার্ড" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>পূর্ণ হোম অ্যাড্রেস (বাড়ি/হোল্ডিং, রোড, বিস্তারিত) *</label>
+              <textarea id="addrHome" rows="2" required placeholder="বাড়ি নম্বর, রোড, নিকটস্থ পরিচিত স্থান"></textarea>
+            </div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>নমিনি সম্পর্ক (শুধুমাত্র পরিবারের নিকটাত্মীয়)</label>
+                <select id="nomineeRelation">
+                  <option value="মা">মা</option>
+                  <option value="বাবা">বাবা</option>
+                  <option value="বোন">বোন</option>
+                  <option value="ভাই">ভাই</option>
+                  <option value="স্ত্রী">স্ত্রী</option>
+                  <option value="স্বামী">স্বামী</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>অগ্রিম ডাউন পেমেন্ট / পেমেন্ট মাধ্যম</label>
+                <select id="payMethod">
+                  <option value="bKash">bKash</option>
+                  <option value="Nagad">Nagad</option>
+                  <option value="COD">ক্যাশ অন ডেলিভারি (COD — শুধু পূর্ণ পেমেন্টে)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="notice-warn">
+              <strong>কিস্তির পরের ধাপের ডকুমেন্ট ও যাচাই নির্দেশনা:</strong><br/>
+              অগ্রিম ডাউন পেমেন্ট দেওয়ার পর অনুমোদনের জন্য জমা দিতে হবে—(১) নিজের NID কার্ডের সামনের ও পেছনের ছবি, (২) NID কার্ড হাতে নিয়ে নিজের ছবি, (৩) পরিবারের নিকটাত্মীয় নমিনির (মা/বাবা/বোন/ভাই/স্ত্রী/স্বামী) NID কার্ডের সামনের ও পেছনের ছবি, (৪) নমিনির সাথে দাঁড়িয়ে এক কপি ছবি, এবং (৫) নিজের ও নমিনির ফোন নম্বর যাচাই। সংবেদনশীল ডকুমেন্ট কখনোই GitHub-এ রাখবেন না; নিরাপদ ব্যাকএন্ড/প্রাইভেট স্টোরেজ ব্যবহার করুন।
+            </div>
+
+            <button class="btn-sm btn-primary" type="submit">অর্ডার / কিস্তি আবেদন সাবমিট করুন</button>
+          </form>
+        `
+      );
+
+      const divSelect = document.getElementById("addrDivision");
+      const distSelect = document.getElementById("addrDistrict");
+      function populateDistricts() {
+        const list = DIVISIONS_DISTRICTS[divSelect.value] || [];
+        distSelect.innerHTML = list.map(dist => `<option value="${escapeAttr(dist)}">${escapeHtml(dist)}</option>`).join("");
+        updateCalc();
+      }
+
+      function updateCalc() {
+        const idx = Number(document.getElementById("emiVariantSelect").value) || 0;
+        const price = Number(variants[idx]?.price) || 0;
+        const months = Number(document.getElementById("emiMonths").value) || 3;
+        const mode = document.getElementById("orderMode").value;
+        const delivery = getDeliveryCharge(distSelect.value);
+
+        const dpAmount = Math.round((price * dpRate) / 100);
+        const remaining = Math.max(0, price - dpAmount);
+        const interestAmt = Math.round((remaining * state.emiInterest) / 100);
+        const totalWithInterest = remaining + interestAmt;
+        const monthlyInstallment = months > 0 ? Math.ceil(totalWithInterest / months) : 0;
+
+        document.getElementById("emiCalculationBox").innerHTML =
+          mode === "EMI"
+            ? `
+              <div><strong>মোট ফোন মূল্য:</strong> ${formatBDT(price)}</div>
+              <div><strong>অগ্রিম ডাউন পেমেন্ট (${dpRate}% — আগে পরিশোধযোগ্য):</strong> <span style="color:var(--primary-dark); font-weight:800;">${formatBDT(dpAmount)}</span></div>
+              <div><strong>বাকি মূলধন:</strong> ${formatBDT(remaining)} + <strong>এককালীন ইন্টারেস্ট (${state.emiInterest}%):</strong> ${formatBDT(interestAmt)}</div>
+              <div><strong>মাসিক কিস্তি (${months} মাস):</strong> <strong>${formatBDT(monthlyInstallment)} / মাস</strong></div>
+              <div><strong>ডেলিভারি চার্জ (${escapeHtml(distSelect.value)}):</strong> ${formatBDT(delivery)}</div>
+            `
+            : `
+              <div><strong>মোট ফোন মূল্য:</strong> ${formatBDT(price)}</div>
+              <div><strong>ডেলিভারি চার্জ (${escapeHtml(distSelect.value)}):</strong> ${formatBDT(delivery)}</div>
+              <div><strong>সর্বমোট পরিশোধযোগ্য:</strong> <strong>${formatBDT(price + delivery)}</strong></div>
+            `;
+      }
+
+      divSelect.addEventListener("change", populateDistricts);
+      distSelect.addEventListener("change", updateCalc);
+      document.getElementById("emiVariantSelect").addEventListener("change", updateCalc);
+      document.getElementById("emiMonths").addEventListener("change", updateCalc);
+      document.getElementById("orderMode").addEventListener("change", updateCalc);
+      populateDistricts();
+
+      document.getElementById("emiOrderForm").addEventListener("submit", e => {
+        e.preventDefault();
+        if (!state.member) {
+          alert("অর্ডার বা কিস্তির আবেদনের আগে অনুগ্রহ করে Google লগইন সম্পন্ন করুন।");
+          openMemberModal();
+          return;
+        }
+
+        const mode = document.getElementById("orderMode").value;
+        const nomineePhone = document.getElementById("nomineePhone").value.trim();
+        const payMethod = document.getElementById("payMethod").value;
+
+        if (mode === "EMI" && !nomineePhone) {
+          alert("কিস্তির আবেদনের জন্য নমিনির ফোন নম্বর আবশ্যক।");
+          return;
+        }
+        if (mode === "EMI" && payMethod === "COD") {
+          alert("কিস্তির ক্ষেত্রে অগ্রিম ডাউন পেমেন্ট বাধ্যতামূলক; COD প্রযোজ্য নয়।");
+          return;
+        }
+
+        const idx = Number(document.getElementById("emiVariantSelect").value) || 0;
+        const price = Number(variants[idx]?.price) || 0;
+        const dpAmount = mode === "EMI" ? Math.round((price * dpRate) / 100) : 0;
+        const orderId = "RPZ-" + Date.now().toString().slice(-6);
+        const custPhone = document.getElementById("custPhone").value.trim();
+
+        const newOrder = {
+          orderId,
+          createdAt: new Date().toLocaleString("bn-BD"),
+          memberEmail: state.member.email,
+          brand: p.brand,
+          productName: p.name,
+          variant: variants[idx]?.ramRom || "Standard",
+          price,
+          mode,
+          dpRate: mode === "EMI" ? dpRate : 0,
+          dpAmount,
+          months: mode === "EMI" ? Number(document.getElementById("emiMonths").value) : 0,
+          custPhone,
+          nomineePhone,
+          nomineeRelation: document.getElementById("nomineeRelation").value,
+          division: divSelect.value,
+          district: distSelect.value,
+          thana: document.getElementById("addrThana").value.trim(),
+          area: document.getElementById("addrArea").value.trim(),
+          homeAddress: document.getElementById("addrHome").value.trim(),
+          deliveryCharge: getDeliveryCharge(distSelect.value),
+          payMethod,
+          status: mode === "EMI" ? "অগ্রিম ডাউন পেমেন্ট ও ডকুমেন্ট যাচাইয়ের অপেক্ষায়" : "অর্ডার গৃহীত হয়েছে"
+        };
+
+        state.orders.unshift(newOrder);
+        persistAll();
+
+        openModal(
+          "অর্ডার সফলভাবে রেকর্ড হয়েছে",
+          `
+            <p style="font-size:0.9rem; margin-bottom:10px;">
+              <strong>Order ID:</strong> ${escapeHtml(orderId)}<br/>
+              <strong>ফোন নম্বর:</strong> ${escapeHtml(custPhone)}<br/>
+              <strong>অবস্থা:</strong> ${escapeHtml(newOrder.status)}
+            </p>
+            ${
+              mode === "EMI"
+                ? `<div class="summary-box">
+                    <div><strong>অগ্রিম ডাউন পেমেন্ট প্রদেয়:</strong> ${formatBDT(dpAmount)} (${escapeHtml(payMethod)})</div>
+                    <div><strong>পরবর্তী ধাপ:</strong> নিজের NID (সামনে/পেছনে), NID হাতে নিয়ে ছবি, নমিনি (${escapeHtml(newOrder.nomineeRelation)})-এর NID (সামনে/পেছনে), নমিনির সাথে দাঁড়িয়ে ছবি এবং উভয় ফোন নম্বর যাচাই সম্পন্ন করুন।</div>
+                   </div>`
+                : ""
+            }
+            <button class="btn-sm btn-primary" type="button" onclick="closeModal()">ঠিক আছে</button>
+          `
+        );
+      });
+    }
+
+    // Cart Modal
+    function openCartModal() {
+      if (state.cart.length === 0) {
+        openModal("কার্ট খালি", `<p style="font-size:0.88rem; color:var(--muted);">আপনার কার্টে কোনো প্রোডাক্ট নেই।</p>`);
+        return;
+      }
+      const subtotal = state.cart.reduce((sum, item) => sum + (Number(item.unitPrice) || 0) * (item.qty || 1), 0);
+      openModal(
+        "আপনার কার্ট",
+        `
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;">
+            ${state.cart.map((c, i) => `
+              <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border); padding:8px; border-radius:8px; font-size:0.85rem;">
+                <div>
+                  <strong>${escapeHtml(c.brand)} ${escapeHtml(c.name)}</strong> (${escapeHtml(c.variant)})<br/>
+                  <span>${formatBDT(c.unitPrice)}</span>
+                </div>
+                <button class="btn-sm" type="button" onclick="removeCartItem(${i})">বাদ দিন</button>
+              </div>
+            `).join("")}
+          </div>
+          <div class="summary-box">
+            <div><strong>সাবটোটাল:</strong> ${formatBDT(subtotal)}</div>
+            <div><strong>ডেলিভারি চার্জ:</strong> ঢাকায় ৳৭০, ঢাকার বাইরে ৳১৩০ (অর্ডারের সময় জেলা অনুযায়ী হিসাব হবে)</div>
+          </div>
+          <button class="btn-sm" type="button" onclick="clearCart()">কার্ট খালি করুন</button>
+        `
+      );
+    }
+
+    function removeCartItem(index) {
+      state.cart.splice(index, 1);
+      persistAll();
+      renderCatalog();
+      openCartModal();
+    }
+
+    function clearCart() {
+      state.cart = [];
+      persistAll();
+      renderCatalog();
+      closeModal();
+    }
+
+    // Wishlist Modal
+    function openWishlistModal() {
+      const items = state.products.filter(p => state.wishlist.includes(p.id));
+      openModal(
+        "উইশলিস্ট",
+        items.length === 0
+          ? `<p style="font-size:0.88rem; color:var(--muted);">উইশলিস্টে কোনো প্রোডাক্ট নেই।</p>`
+          : items.map(p => `
+              <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border); padding:8px; border-radius:8px; margin-bottom:8px; font-size:0.85rem;">
+                <div><strong>${escapeHtml(p.brand)} ${escapeHtml(p.name)}</strong></div>
+                <button class="btn-sm" type="button" onclick="openProductDetail('${escapeAttr(p.id)}')">দেখুন</button>
+              </div>
+            `).join("")
+      );
+    }
+
+    // Order Tracking Modal
+    function openOrderTrackModal() {
+      openModal(
+        "অর্ডার ট্র্যাকিং (Order ID ও ফোন নম্বর দিয়ে)",
+        `
+          <form id="trackForm" class="form-grid two-col" style="margin-bottom:12px;">
+            <div class="field">
+              <label>Order ID</label>
+              <input type="text" id="trackOrderId" required placeholder="যেমন: RPZ-123456" />
+            </div>
+            <div class="field">
+              <label>নিজের ফোন নম্বর</label>
+              <input type="tel" id="trackPhone" required placeholder="01XXXXXXXXX" />
+            </div>
+            <button class="btn-sm btn-primary" type="submit">অর্ডার খুঁজুন</button>
+          </form>
+          <div id="trackResult"></div>
+        `
+      );
+
+      document.getElementById("trackForm").addEventListener("submit", e => {
+        e.preventDefault();
+        const oid = document.getElementById("trackOrderId").value.trim().toUpperCase();
+        const ph = document.getElementById("trackPhone").value.trim();
+        const found = state.orders.find(o => o.orderId.toUpperCase() === oid && o.custPhone === ph);
+        const box = document.getElementById("trackResult");
+        if (!found) {
+          box.innerHTML = `<p style="font-size:0.85rem; color:#b91c1c;">এই Order ID ও ফোন নম্বরের সাথে মিলিয়ে কোনো অর্ডার পাওয়া যায়নি।</p>`;
+          return;
+        }
+        box.innerHTML = `
+          <div class="summary-box">
+            <div><strong>Order ID:</strong> ${escapeHtml(found.orderId)}</div>
+            <div><strong>প্রোডাক্ট:</strong> ${escapeHtml(found.brand)} ${escapeHtml(found.productName)} (${escapeHtml(found.variant)})</div>
+            <div><strong>ঠিকানা:</strong> ${escapeHtml(found.homeAddress)}, ${escapeHtml(found.area)}, ${escapeHtml(found.thana)}, ${escapeHtml(found.district)}, ${escapeHtml(found.division)}</div>
+            <div><strong>অবস্থা:</strong> <strong>${escapeHtml(found.status)}</strong></div>
+          </div>
+        `;
+      });
+    }
+
+    // Admin Panel (Product, Price Upload, EMI Interest & Orders)
+    function openAdminModal() {
+      if (!state.adminAuthed) {
+        openModal(
+          "Admin লগইন",
+          `
+            <p style="font-size:0.82rem; color:var(--muted); margin-bottom:10px;">
+              ডেমো অ্যাক্সেস: <code>admin@ripido.com</code> / <code>admin123</code> (প্রোডাকশনে নিরাপদ সার্ভার-সাইড অথেনটিকেশন ব্যবহার করুন)।
+            </p>
+            <form id="adminLoginForm" class="form-grid">
+              <div class="field">
+                <label>Admin Email</label>
+                <input type="email" id="admEmail" required placeholder="admin@ripido.com" />
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <input type="password" id="admPass" required placeholder="••••••••" />
+              </div>
+              <button class="btn-sm btn-primary" type="submit">লগইন করুন</button>
+            </form>
+          `
+        );
+
+        document.getElementById("adminLoginForm").addEventListener("submit", e => {
+          e.preventDefault();
+          const email = document.getElementById("admEmail").value.trim();
+          const pass = document.getElementById("admPass").value;
+          if (email === "admin@ripido.com" && pass === "admin123") {
+            state.adminAuthed = true;
+            persistAll();
+            openAdminModal();
+          } else {
+            alert("ভুল ইমেইল বা পাসওয়ার্ড।");
+          }
+        });
+        return;
+      }
+
+      openModal(
+        "Admin ড্যাশবোর্ড — প্রোডাক্ট, দাম আপলোড ও EMI সেটিংস",
+        `
+          <div class="tabs-bar">
+            <button class="tab-btn active" type="button" id="admTabAdd">নতুন প্রোডাক্ট ও দাম যোগ</button>
+            <button class="tab-btn" type="button" id="admTabPrice">দাম ও ভ্যারিয়েন্ট আপলোড</button>
+            <button class="tab-btn" type="button" id="admTabEmi">EMI ইন্টারেস্ট ও অর্ডার</button>
+            <button class="tab-btn" type="button" id="admLogoutBtn">লগআউট</button>
+          </div>
+          <div id="admTabContent"></div>
+        `
+      );
+
+      document.getElementById("admLogoutBtn").addEventListener("click", () => {
+        state.adminAuthed = false;
+        persistAll();
+        closeModal();
+      });
+
+      const content = document.getElementById("admTabContent");
+
+      function showAddTab() {
+        setActiveTab("admTabAdd");
+        content.innerHTML = `
+          <form id="addProductForm" class="form-grid">
+            <div class="form-grid two-col">
+              <div class="field">
+                <label>ব্র্যান্ড *</label>
+                <select id="npBrand" required>
+                  ${BRANDS.filter(b => b !== "ALL").map(b => `<option value="${escapeAttr(b)}">${escapeHtml(b)}</option>`).join("")}
+                </select>
+              </div>
+              <div class="field">
+                <label>মডেলের নাম *</label>
+                <input type="text" id="npName" required placeholder="যাচাইকৃত অফিসিয়াল মডেল নাম" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>প্রোডাক্টের ছবি আপলোড করুন (Device Photo)</label>
+              <input type="file" id="npImageFile" accept="image/*" />
+            </div>
+
+            <div class="field">
+              <label>ভ্যারিয়েন্ট (RAM/ROM), দাম (BDT) ও স্টক</label>
+              <div id="npVariantsList">
+                <div class="variant-row">
+                  <input type="text" class="v-ramrom" placeholder="যেমন: 8GB/128GB" required />
+                  <input type="number" class="v-price" min="1" placeholder="দাম (৳)" required />
+                  <input type="number" class="v-stock" min="0" placeholder="স্টক" />
+                  <span></span>
+                </div>
+              </div>
+              <button class="btn-sm" type="button" id="addVariantRowBtn" style="margin-top:6px; width:fit-content;">+ আরেকটি ভ্যারিয়েন্ট যোগ করুন</button>
+            </div>
+
+            <button class="btn-sm btn-primary" type="submit">প্রোডাক্ট সংরক্ষণ করুন</button>
+          </form>
+        `;
+
+        document.getElementById("addVariantRowBtn").addEventListener("click", () => {
+          const wrap = document.getElementById("npVariantsList");
+          const row = document.createElement("div");
+          row.className = "variant-row";
+          row.innerHTML = `
+            <input type="text" class="v-ramrom" placeholder="RAM/ROM" required />
+            <input type="number" class="v-price" min="1" placeholder="দাম (৳)" required />
+            <input type="number" class="v-stock" min="0" placeholder="স্টক" />
+            <button class="btn-sm" type="button" onclick="this.parentElement.remove()">✕</button>
+          `;
+          wrap.appendChild(row);
+        });
+
+        document.getElementById("addProductForm").addEventListener("submit", async e => {
+          e.preventDefault();
+          const fileInput = document.getElementById("npImageFile");
+          let imageData = "";
+          if (fileInput.files && fileInput.files[0]) {
+            imageData = await readFileAsDataURL(fileInput.files[0]);
+          }
+
+          const rows = [...document.querySelectorAll("#npVariantsList .variant-row")];
+          const variants = rows.map(r => ({
+            ramRom: r.querySelector(".v-ramrom").value.trim(),
+            price: Number(r.querySelector(".v-price").value) || 0,
+            stock: r.querySelector(".v-stock").value === "" ? "" : Number(r.querySelector(".v-stock").value)
+          })).filter(v => v.ramRom && v.price > 0);
+
+          if (!variants.length) {
+            alert("কমপক্ষে একটি সঠিক ভ্যারিয়েন্ট ও দাম দিন।");
+            return;
+          }
+
+          state.products.unshift({
+            id: "PRD-" + Date.now(),
+            brand: document.getElementById("npBrand").value,
+            name: document.getElementById("npName").value.trim(),
+            image: imageData,
+            variants
+          });
+
+          persistAll();
+          renderCatalog();
+          alert("প্রোডাক্ট সংরক্ষণ করা হয়েছে।");
+          showPriceTab();
+        });
+      }
+
+      function showPriceTab() {
+        setActiveTab("admTabPrice");
+        if (state.products.length === 0) {
+          content.innerHTML = `<p style="font-size:0.86rem; color:var(--muted);">এখনও কোনো প্রোডাক্ট নেই। প্রথমে প্রোডাক্ট যোগ করুন।</p>`;
+          return;
+        }
+
+        content.innerHTML = `
+          <div class="field" style="margin-bottom:10px;">
+            <label>প্রোডাক্ট নির্বাচন করুন</label>
+            <select id="editProdSelect">
+              ${state.products.map((p, i) => `<option value="${i}">${escapeHtml(p.brand)} — ${escapeHtml(p.name)}</option>`).join("")}
+            </select>
+          </div>
+          <div id="editProdFormArea"></div>
+        `;
+
+        const sel = document.getElementById("editProdSelect");
+        function renderSingleEditor() {
+          const p = state.products[Number(sel.value) || 0];
+          const vars = Array.isArray(p.variants) && p.variants.length
+            ? p.variants
+            : [{ ramRom: "Standard", price: Number(p.price) || 0, stock: "" }];
+
+          document.getElementById("editProdFormArea").innerHTML = `
+            <form id="updatePriceForm" class="form-grid">
+              <div class="field">
+                <label>নতুন ছবি আপলোড (ঐচ্ছিক)</label>
+                <input type="file" id="updImgFile" accept="image/*" />
+              </div>
+              <div id="updVarsContainer">
+                ${vars.map((v, idx) => `
+                  <div class="variant-row" data-vidx="${idx}">
+                    <input type="text" class="uv-ramrom" value="${escapeAttr(v.ramRom || "")}" required />
+                    <input type="number" class="uv-price" min="1" value="${escapeAttr(String(v.price || 0))}" required />
+                    <input type="number" class="uv-stock" min="0" value="${escapeAttr(v.stock === "" || v.stock === undefined ? "" : String(v.stock))}" placeholder="স্টক" />
+                    <span></span>
+                  </div>
+                `).join("")}
+              </div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn-sm btn-primary" type="submit">দাম ও তথ্য আপডেট করুন</button>
+                <button class="btn-sm" type="button" id="deleteProdBtn" style="color:#b91c1c;">প্রোডাক্ট মুছুন</button>
+              </div>
+            </form>
+          `;
+
+          document.getElementById("updatePriceForm").addEventListener("submit", async e => {
+            e.preventDefault();
+            const f = document.getElementById("updImgFile");
+            if (f.files && f.files[0]) {
+              p.image = await readFileAsDataURL(f.files[0]);
+            }
+            p.variants = [...document.querySelectorAll("#updVarsContainer .variant-row")].map(r => ({
+              ramRom: r.querySelector(".uv-ramrom").value.trim(),
+              price: Number(r.querySelector(".uv-price").value) || 0,
+              stock: r.querySelector(".uv-stock").value === "" ? "" : Number(r.querySelector(".uv-stock").value)
+            }));
+            persistAll();
+            renderCatalog();
+            alert("দাম আপডেট হয়েছে।");
+          });
+
+          document.getElementById("deleteProdBtn").addEventListener("click", () => {
+            state.products.splice(Number(sel.value) || 0, 1);
+            persistAll();
+            renderCatalog();
+            showPriceTab();
+          });
+        }
+
+        sel.addEventListener("change", renderSingleEditor);
+        renderSingleEditor();
+      }
+
+      function showEmiOrdersTab() {
+        setActiveTab("admTabEmi");
+        content.innerHTML = `
+          <form id="emiRateForm" class="form-grid two-col" style="margin-bottom:14px;">
+            <div class="field">
+              <label>এককালীন EMI ইন্টারেস্ট হার (%)</label>
+              <input type="number" id="admEmiRateInput" step="0.1" min="0" value="${escapeAttr(String(state.emiInterest))}" required />
+            </div>
+            <div class="field" style="justify-content:flex-end;">
+              <button class="btn-sm btn-primary" type="submit">ইন্টারেস্ট হার সংরক্ষণ করুন</button>
+            </div>
+          </form>
+
+          <h4 style="font-size:0.9rem; margin-bottom:8px;">সংরক্ষিত অর্ডারসমূহ (${state.orders.length})</h4>
+          ${
+            state.orders.length === 0
+              ? `<p style="font-size:0.84rem; color:var(--muted);">এখনও কোনো অর্ডার নেই।</p>`
+              : state.orders.map((o, idx) => `
+                  <div style="border:1px solid var(--border); border-radius:8px; padding:8px; margin-bottom:8px; font-size:0.82rem;">
+                    <div><strong>${escapeHtml(o.orderId)}</strong> — ${escapeHtml(o.brand)} ${escapeHtml(o.productName)} (${escapeHtml(o.mode)})</div>
+                    <div>গ্রাহক ফোন: ${escapeHtml(o.custPhone)} | নমিনি ফোন: ${escapeHtml(o.nomineePhone || "-")} (${escapeHtml(o.nomineeRelation || "-")})</div>
+                    <div>ঠিকানা: ${escapeHtml(o.district)}, ${escapeHtml(o.thana)}, ${escapeHtml(o.area)}</div>
+                    <div style="margin-top:6px; display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+                      <select onchange="updateOrderStatus(${idx}, this.value)">
+                        <option value="অগ্রিম ডাউন পেমেন্ট ও ডকুমেন্ট যাচাইয়ের অপেক্ষায়" ${o.status.includes("অপেক্ষায়") ? "selected" : ""}>ডকুমেন্ট যাচাইয়ের অপেক্ষায়</option>
+                        <option value="অনুমোদিত / প্রসেসিং" ${o.status.includes("অনুমোদিত") ? "selected" : ""}>অনুমোদিত / প্রসেসিং</option>
+                        <option value="ডেলিভারি সম্পন্ন" ${o.status.includes("সম্পন্ন") ? "selected" : ""}>ডেলিভারি সম্পন্ন</option>
+                        <option value="বাতিল" ${o.status === "বাতিল" ? "selected" : ""}>বাতিল</option>
+                      </select>
+                    </div>
+                  </div>
+                `).join("")
+          }
+        `;
+
+        document.getElementById("emiRateForm").addEventListener("submit", e => {
+          e.preventDefault();
+          const val = Number(document.getElementById("admEmiRateInput").value);
+          if (!Number.isFinite(val) || val < 0) return;
+          state.emiInterest = val;
+          persistAll();
+          alert("EMI ইন্টারেস্ট হার আপডেট হয়েছে।");
+        });
+      }
+
+      function setActiveTab(activeId) {
+        ["admTabAdd", "admTabPrice", "admTabEmi"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.toggle("active", id === activeId);
+        });
+      }
+
+      document.getElementById("admTabAdd").addEventListener("click", showAddTab);
+      document.getElementById("admTabPrice").addEventListener("click", showPriceTab);
+      document.getElementById("admTabEmi").addEventListener("click", showEmiOrdersTab);
+      showAddTab();
+    }
+
+    function updateOrderStatus(idx, status) {
+      if (!state.orders[idx]) return;
+      state.orders[idx].status = status;
+      persistAll();
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ""));
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str);
+    }
+
+    // Language Toggle
+    document.getElementById("langToggleBtn").addEventListener("click", () => {
+      state.lang = state.lang === "bn" ? "en" : "bn";
+      document.getElementById("langToggleBtn").textContent = state.lang === "bn" ? "English" : "বাংলা";
+      document.getElementById("searchInput").placeholder =
+        state.lang === "bn"
+          ? "ফোনের মডেল বা ব্র্যান্ড খুঁজুন (যেমন: TECNO, INFINIX, VIVO, OPPO, REALME, REDMI, XIAOMI)"
+          : "Search model or brand (TECNO, INFINIX, VIVO, OPPO, REALME, REDMI, XIAOMI)";
+      renderBrands();
+      renderCatalog();
+    });
+
+    // Search & Sort Listeners
+    document.getElementById("searchInput").addEventListener("input", e => {
+      state.search = e.target.value;
+      renderCatalog();
+    });
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      state.search = document.getElementById("searchInput").value;
+      renderCatalog();
+    });
+
+    document.querySelectorAll(".sort-btn[data-sort]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".sort-btn[data-sort]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.sort = btn.dataset.sort;
+        renderCatalog();
+      });
+    });
+
+    document.getElementById("memberBtn").addEventListener("click", openMemberModal);
+    document.getElementById("cartTopBtn").addEventListener("click", openCartModal);
+    document.getElementById("adminOpenBtn").addEventListener("click", openAdminModal);
+    document.getElementById("wishlistOpenBtn").addEventListener("click", openWishlistModal);
+
+    document.getElementById("navStoreBtn").addEventListener("click", () => {
+      state.brand = "ALL";
+      renderBrands();
+      renderCatalog();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    document.getElementById("navProductsBtn").addEventListener("click", () => {
+      document.getElementById("catalogArea").scrollIntoView({ behavior: "smooth" });
+    });
+    document.getElementById("navTrackBtn").addEventListener("click", openOrderTrackModal);
+    document.getElementById("navSupportBtn").addEventListener("click", () => {
+      openModal(
+        "সাপোর্ট ও নির্দেশনা",
+        `
+          <p style="font-size:0.88rem; line-height:1.6;">
+            <strong>RIPIDO MOBILE ZONE</strong><br/>
+            অর্ডার, ৬৪ জেলা ডেলিভারি (ঢাকায় ৳৭০, বাইরে ৳১৩০) এবং অগ্রিম ডাউন পেমেন্টসহ কিস্তি (EMI) সংক্রান্ত সকল নিয়মাবলি ও যাচাইয়ের নির্দেশনা মূল পেজে বাংলায় দেওয়া আছে।
+          </p>
+        `
+      );
+    });
+
+    renderBrands();
+    renderCatalog();
+  </script>
+</body>
+</html>
